@@ -34,6 +34,10 @@
     (test (<= $?Imanzanas 3))
     (test (<= $?Icaquis 3))
     (test (<= $?Iuvas 3))
+    (test (> (length$ $?PlNaranja) 0))
+    (test (> (length$ $?PlManzana) 0))
+    (test (> (length$ $?PlCaqui) 0))
+    (test (> (length$ $?PlUvas) 0))
     => 
     (assert(robot pedido naranjas $?naranjas manzanas $?manzanas caquis $?caquis uvas $?uvas inventarioRobot naranjas $?naranjasP manzanas $?manzanasP caquis $?caquisP uvas $?uvasP operaciones $?operaciones , $?naranjasP $?manzanasP $?caquisP $?uvasP))
     (assert(((palets naranjas ?$PlNaranja-$?naranjasP manzanas $?PlManzana-$?manzanasP caquis $?PlCaqui-$?caquisP uvas $?PlUvas-$?uvasP))))
