@@ -27,13 +27,22 @@
 
 (defrule robotPedido
 
-    (robot pedido naranjas $?naranjas manzanas $?manzanas caquis $?caquis uvas $?uvas inventarioRobot naranjas $?Inaranjas manzanas $?Imanzanas caquis $?Icaquis uvas $?Iuvas operaciones)
+    (robot pedido naranjas $?naranjas manzanas $?manzanas caquis $?caquis uvas $?uvas inventarioRobot naranjas $?Inaranjas manzanas $?Imanzanas caquis $?Icaquis uvas $?Iuvas operaciones $?operaciones , $?naranjasP $?manzanasP $?caquisP $?uvasP)
     (pedido naranjas $?naranjasP manzanas $?manzanasP caquis $?caquisP uvas $?uvasP)
+    (palets naranjas ?$PlNaranja manzanas $?PlManzana caquis $?PlCaqui uvas $?PlUvas)
     (test (<= $?Inaranjas 3))
     (test (<= $?Imanzanas 3))
     (test (<= $?Icaquis 3))
     (test (<= $?Iuvas 3))
     => 
-    
+    (assert(robot pedido naranjas $?naranjas manzanas $?manzanas caquis $?caquis uvas $?uvas inventarioRobot naranjas $?naranjasP manzanas $?manzanasP caquis $?caquisP uvas $?uvasP operaciones $?operaciones , $?naranjasP $?manzanasP $?caquisP $?uvasP))
+    (assert(((palets naranjas ?$PlNaranja-$?naranjasP manzanas $?PlManzana-$?manzanasP caquis $?PlCaqui-$?caquisP uvas $?PlUvas-$?uvasP))))
 )
 
+(defrule descargarPedido
+
+    (robot pedido naranjas $?naranjas manzanas $?manzanas caquis $?caquis uvas $?uvas inventarioRobot naranjas $?Inaranjas manzanas $?Imanzanas caquis $?Icaquis uvas $?Iuvas operaciones $?operaciones , $?naranjasP $?manzanasP $?caquisP $?uvasP)
+    (lineaDePedido naranjas $?naranjas manzanas $?manzanas caquis $?caquis uvas $?uvas)
+    => 
+    (assert((lineaDePedido naranjas $?Inaranjas manzanas $?Imanzanas caquis $?Icaquis uvas $?Iuvas))
+)
